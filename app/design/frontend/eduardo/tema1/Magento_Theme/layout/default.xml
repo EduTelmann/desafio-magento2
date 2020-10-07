@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/my_logo.png</argument>
+                <argument name="logo_width" xsi:type="number">180</argument>
+                <argument name="logo_alt" xsi:type="string">Utilidades Clínicas</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="header.container" remove="true" />
+        <referenceBlock name="footer-container" remove="true" />
+        <referenceContainer name="page.wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="top.header" template="Magento_Theme::customheader.phtml" before="header.container">
+                
+                
+                <block class="Magento\Framework\View\Element\Template" name="top.search" as="topSearch"
+                       template="Magento_Search::form.mini.phtml"/>
+
+                <container name="search-header" label="Search" as="search-header" htmlTag="div"
+                           htmlClass="search-wrapper"/>
+                
+            </block>
+            
+            <block class="Magento\Framework\View\Element\Template" name="bottom.footer" template="Magento_Theme::customfooter.phtml" before="footer-container" />
+        </referenceContainer>
+        <move element="minicart" destination="top.header" />
+        <move element="catalog.compare.link" destination="top.header" before="-"/>
+        <move element="top.search" destination="search-header"/>
+        <move element="currency" destination="top.header"/>
+        <move element="logo" destination="top.header"/>
+        <move element="skip_to_content" destination="top.header"/>
+        
+        
+    </body>
+</page>
